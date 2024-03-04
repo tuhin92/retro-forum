@@ -1,6 +1,3 @@
-// JavaScript code to load posts and handle button clicks
-
-// Function to load all posts data
 const loadAllPost = async () => {
     try {
         const response = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
@@ -97,4 +94,58 @@ const addPostToCart = post => {
     markAsReadSpan.textContent = currentValue + 1;
 }
 
+
+
+
+// latest post 
+const loadLatestPost = async () => {
+    const response = await fetch('https://openapi.programming-hero.com/api/retro-forum/latest-posts');
+    const data = await response.json();
+    const latestPost = data;
+    // console.log(latestPost);
+    displayLatestPost(latestPost);
+}
+
+const displayLatestPost = latestPost => {
+    const latestCardContainer = document.getElementById('latest-card-container');
+    latestPost.forEach(post => {
+        // Check if posted_date exists, otherwise use 'No publish date'
+        const posted_date = post.author.posted_date ? post.author.posted_date : 'No publish date';
+
+        // Check if designation exists, otherwise use 'Unknown'
+        const designation = post.author.designation ? post.author.designation : 'Unknown';
+
+        // Create div 
+        const latestPostCard = document.createElement('div');
+        latestPostCard.classList = `card w-96 bg-base-100 shadow-xl`;
+        latestPostCard.innerHTML = `
+            <figure class="px-10 pt-10">
+                <img src="${post.cover_image}" alt="Shoes" class="rounded-xl" />
+            </figure>
+            <div class="card-body">
+                <div class="flex">
+                    <img src="images/cal.svg" alt="">
+                    <p>${posted_date}</p>
+                </div>
+                <h2 class="card-title">${post.title}</h2>
+                <p>${post.description}</p>
+                <div class="flex gap-4">
+                    <div class="avatar">
+                        <div class="w-14 rounded-full">
+                            <img src="${post.profile_image}"/>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">${post.author.name}</h3>
+                        <p>${designation}</p>
+                    </div> 
+                </div>
+            </div>
+        `;
+        latestCardContainer.appendChild(latestPostCard);
+    });
+}
+
+
 loadAllPost();
+loadLatestPost();
