@@ -1,6 +1,6 @@
 // JavaScript code to load posts and handle button clicks
 
-// Load all posts data
+// Function to load all posts data
 const loadAllPost = async () => {
     try {
         const response = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
@@ -12,7 +12,7 @@ const loadAllPost = async () => {
     }
 }
 
-// Display post data 
+// Function to display post data 
 const displayPosts = posts => {
     const postContainer = document.getElementById('post-container');
     posts.forEach(post => {
@@ -90,8 +90,11 @@ const addPostToCart = post => {
         </div>
     `;
     cartContainer.appendChild(postDetail);
+
+    // Increase the value inside the span tag
+    const markAsReadSpan = document.querySelector('#cart-container .text-base span');
+    const currentValue = parseInt(markAsReadSpan.textContent);
+    markAsReadSpan.textContent = currentValue + 1;
 }
 
-
-// Load posts when the page loads
 loadAllPost();
