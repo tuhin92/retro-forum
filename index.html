@@ -64,8 +64,8 @@
                         <h1 class="font-bold text-6xl text-white font-mulish">Welcome to the <br> <span style="color: #797DFC;">MeTro</span> Forum</h1>
                         <p class="py-6 text-xl text-white font-medium font-mulish">Share your favorite opinion and win and wp forum coffee mug!</p>
                         <label class="input input-bordered flex items-center gap-2 rounded-full">
-                            <input type="text" class="grow" placeholder="Search here anything" />
-                            <span class="badge badge-info bg-[#797DFC] p-5 text-white text-xl font-bold font-mulish">Search</span>
+                            <input id="search-field" type="text" class="grow" placeholder="Search here anything" />
+                            <span onclick="handleSearch()" class="btn bg-[#797DFC] text-white text-xl font-bold font-mulish rounded-full">Search</span>
                         </label>
                     </div>
                     <div class="bg-white py-14 px-16 rounded-3xl font-mulish text-xl">
@@ -188,7 +188,6 @@
         <img src="images/Line 2.svg" alt="">
         <p class="font-light text-[#3b3b44]">Copyright © 2024 - All right reserved</p>
     </footer>
-
     <!-- js scripts  -->
     <script src="JS/post.js"></script>
 </body>

@@ -1,6 +1,6 @@
-const loadAllPost = async () => {
+const loadAllPost = async (searchText) => {
     try {
-        const response = await fetch('https://openapi.programming-hero.com/api/retro-forum/posts');
+        const response = await fetch(`https://openapi.programming-hero.com/api/retro-forum/posts?search=${searchText}`);
         const postData = await response.json();
         const posts = postData.posts;
         displayPosts(posts);
@@ -26,7 +26,7 @@ const displayPosts = posts => {
                     </div>
 
                     <div>
-                        <div class="flex">
+                        <div class="flex gap-x-4">
                             <h6>#${post.category}</h6>
                             <h6>Author : ${post.author.name}</h6>
                         </div>
@@ -146,6 +146,11 @@ const displayLatestPost = latestPost => {
     });
 }
 
+const handleSearch = ()=>{
+    const searchField = document.getElementById('search-field');
+    const searchText = searchField.value;
+    loadAllPost(searchText);
+}
 
 loadAllPost();
 loadLatestPost();
